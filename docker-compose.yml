@@ -14,5 +14,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  app:
+    container_name: blog_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: blog-backend:latest
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: "postgresql://user:password@db:5432/blog_db?schema=public"
+    depends_on:
+      - db
+
 volumes:
   postgres_data:

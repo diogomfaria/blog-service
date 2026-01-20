@@ -34,6 +34,8 @@ FROM node:20-alpine As production
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 
+COPY --chown=node:node --from=build /usr/src/app/prisma ./prisma
+
 RUN apk add --no-cache openssl
 
 EXPOSE 3000
